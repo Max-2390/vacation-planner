@@ -6,49 +6,50 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "excursions")
 public class Excursion {
     @PrimaryKey(autoGenerate = true)
-    private int exID;
-    private String exTitle;
-    private int vacID;
+    private int id;
+    private String title;
+    private int vacationID;
     private String date;
 
-    public Excursion(int excursionID, String excursionTitle, int vacationID, String excursionDate) {
-        this.exID = excursionID;
-        this.exTitle = excursionTitle;
-        this.vacID = vacationID;
-        this.date = excursionDate;
+
+    public Excursion(int id, String title, int vacationID, String date) {
+        this.id = id;
+        this.title = title;
+        this.vacationID = vacationID;
+        this.date = date;
     }
 
-    public int getExcursionID() {
-        return exID;
+    public int getId() {
+        return id;
     }
 
-    public void setExcursionID(int excursionID) {
-        this.exID = excursionID;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getExcursionTitle() {
-        return exTitle;
+    public String getTitle() {
+        return title;
     }
 
-    public void setExcursionTitle(String excursionTitle) {
-        this.exTitle = excursionTitle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public int getVacationID() {
-        return vacID;
+        return vacationID;
     }
 
     public void setVacationID(int vacationID) {
-        this.vacID = vacationID;
+        this.vacationID = vacationID;
     }
 
-    public String getExcursionDate() {
+
+    public String getDate() {
         return date;
     }
 
-    public void setExcursionDate(String excursionDate) {
-        this.date = excursionDate;
+    public void setDate(String date) {
+        this.date = date;
     }
 }
-
 

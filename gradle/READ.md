@@ -29,6 +29,7 @@ the bottom right corner to access the Excursion Details page, enter the excursio
 and save the information.
 
 # Android Version Signed APK
+The signed APK is deployed to Android 8.0 and above
 
 # GitLab Link
 https://gitlab.com/wgu-gitlab-environment/student-repos/bsm2291/d308-mobile-application-

@@ -1,46 +1,30 @@
 package com.example.myapplication.UI;
 
-import android.app.AlarmManager;
 import android.app.DatePickerDialog;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
 import android.net.ParseException;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.myapplication.R;
 import com.example.myapplication.database.Repository;
 import com.example.myapplication.entities.Excursion;
-import com.example.myapplication.entities.Vacation;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
 public class ExcursionDetails extends AppCompatActivity {
 
-    String exTitle;
-    int exID;
-    int vacID;
+    String title;
+    int id;
+    int vacationID;
     EditText editTitle;
     Repository repository;
     Excursion currentExcursion;
@@ -59,11 +43,11 @@ public class ExcursionDetails extends AppCompatActivity {
         setContentView(R.layout.activity_excursion_details);
 
         repository = new Repository(getApplication());
-        exTitle = getIntent().getStringExtra("excursionTitle");
+        title = getIntent().getStringExtra("excursionTitle");
         editTitle = findViewById(R.id.excursionTitle);
-        editTitle.setText(exTitle);
-        exID = getIntent().getIntExtra("excursionID", -1);
-        vacID = getIntent().getIntExtra("vacationID", -1);
+        editTitle.setText(title);
+        id = getIntent().getIntExtra("excursionID", -1);
+        vacationID = getIntent().getIntExtra("vacationID", -1);
         setDate = getIntent().getStringExtra("excursionDate");
         numAlert = rand.nextInt(99999);
 

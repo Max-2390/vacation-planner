@@ -6,48 +6,47 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "vacations")
 public class Vacation {
 
-
     @PrimaryKey(autoGenerate = true)
-    public int vacID;
-    private String vacTitle;
-    private String vacHotel;
+    public int vacationID;
+    private String vacationTitle;
+    private String vacationHotel;
     private String startDate;
     private String endDate;
 
+    public Vacation() {}
+
+
     public Vacation(int vacationId, String vacationTitle, String vacationHotel, String startDate, String endDate) {
-        this.vacID = vacationId;
-        this.vacTitle = vacationTitle;
-        this.vacHotel = vacationHotel;
+        this.vacationID = vacationId;
+        this.vacationTitle = vacationTitle;
+        this.vacationHotel = vacationHotel;
         this.startDate = startDate;
         this.endDate = endDate;
     }
 
-    public String toString() {
-        return vacTitle;
-    }
-
-    public int getVacationId() {
-        return vacID;
-    }
-
-    public void setVacationId(int vacationId) {
-        this.vacID = vacationId;
+    public void setVacationTitle(String vacationTitle) {
+        this.vacationTitle = vacationTitle;
     }
 
     public String getVacationTitle() {
-        return vacTitle;
+        return vacationTitle;
     }
 
-    public void setVacationTitle(String vacationTitle) {
-        this.vacTitle = vacationTitle;
+    public int getVacationID() {
+        return vacationID;
     }
+
+    public void setVacationId(int vacationId) {
+        this.vacationID = vacationId;
+    }
+
 
     public String getVacationHotel() {
-        return vacHotel;
+        return vacationHotel;
     }
 
     public void setVacationHotel(String vacationHotel) {
-        this.vacHotel = vacationHotel;
+        this.vacationHotel = vacationHotel;
     }
 
     public String getStartDate() {
@@ -66,4 +65,3 @@ public class Vacation {
         this.endDate = endDate;
     }
 }
-
