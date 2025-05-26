@@ -3,7 +3,6 @@ package com.example.myapplication.UI;
 import android.app.DatePickerDialog;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
-import android.net.ParseException;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
@@ -11,6 +10,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.text.ParseException;
+
 
 import com.example.myapplication.R;
 import com.example.myapplication.database.Repository;
@@ -60,8 +62,6 @@ public class ExcursionDetails extends AppCompatActivity {
                 myCalendarDate.setTime(excursionDate);
             } catch (ParseException e) {
                 e.printStackTrace();
-            } catch (java.text.ParseException e) {
-                throw new RuntimeException(e);
             }
         }
 
@@ -77,8 +77,6 @@ public class ExcursionDetails extends AppCompatActivity {
                     myCalendarDate.setTime(sdf.parse(info));
                 } catch (ParseException e) {
                     e.printStackTrace();
-                } catch (java.text.ParseException e) {
-                    throw new RuntimeException(e);
                 }
                 new DatePickerDialog(ExcursionDetails.this, excursionDate, myCalendarDate
                         .get(Calendar.YEAR), myCalendarDate.get(Calendar.MONTH),
