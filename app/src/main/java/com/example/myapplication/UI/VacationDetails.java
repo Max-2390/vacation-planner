@@ -198,9 +198,9 @@ public class VacationDetails extends AppCompatActivity {
                 } else {
                     Vacation vacation;
                     if (vacationID == -1) {
-                        if (repository.getxAllVacations().size() == 0) vacationID = 1;
-                        else vacationID = repository.getxAllVacations().get(repository.getxAllVacations().size() - 1).getVacationID() + 1;
-                        vacation = new Vacation(vacationID, editTitle.getText().toString(), editHotel.getText().toString(), startDateString, endDateString);
+                        //if (repository.getxAllVacations().size() == 0) vacationID = 1;
+                       // else vacationID = repository.getxAllVacations().get(repository.getxAllVacations().size() - 1).getVacationID() + 1;
+                        vacation = new Vacation(0, editTitle.getText().toString(), editHotel.getText().toString(), startDateString, endDateString);
                         repository.insert(vacation);
                         this.finish();
                     } else {
