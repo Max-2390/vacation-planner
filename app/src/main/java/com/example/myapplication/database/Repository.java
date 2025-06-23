@@ -129,5 +129,22 @@ public class Repository {
         }
     }
 
+
+    public List<Vacation> getVacationsByDateRange(String startDate, String endDate) {
+        final List<Vacation>[] filteredVacations = new List[]{null};
+        databaseExecutor.execute(() -> {
+            filteredVacations[0] = xVacationDAO.searchVacationsByDateRange(startDate, endDate);
+        });
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        return filteredVacations[0];
+    }
+
+
+
+
 }
 
