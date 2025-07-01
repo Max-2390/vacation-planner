@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.myapplication.R;
 import com.example.myapplication.entities.Vacation;
 
@@ -18,66 +19,62 @@ public class VacationAdapter extends RecyclerView.Adapter<VacationAdapter.Vacati
     private List<Vacation> xVacations;
     private final Context context;
     private final LayoutInflater xInflater;
-    public VacationAdapter(Context context){
-        xInflater= LayoutInflater.from(context);
-        this.context=context;
+
+    public VacationAdapter(Context context) {
+        xInflater = LayoutInflater.from(context);
+        this.context = context;
     }
+
     public class VacationViewHolder extends RecyclerView.ViewHolder {
-        private final TextView vacationItemView;
+        private final TextView vacationCombinedView;
+
         public VacationViewHolder(@NonNull View itemView) {
             super(itemView);
-            vacationItemView=itemView.findViewById(R.id.textView2);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int position=getAdapterPosition();
-                    final Vacation current=xVacations.get(position);
-                    Intent intent=new Intent(context, VacationDetails.class);
-                    intent.putExtra("vacationID", current.getVacationID());
-                    intent.putExtra("vacationTitle", current.getVacationTitle());
-                    intent.putExtra("vacationHotel", current.getVacationHotel());
-                    intent.putExtra("startDate", current.getStartDate());
-                    intent.putExtra("endDate", current.getEndDate());
-                    context.startActivity(intent);
+            vacationCombinedView = itemView.findViewById(R.id.vacationCombinedTextView);
 
-                }
+            itemView.setOnClickListener(view -> {
+                int position = getAdapterPosition();
+                final Vacation current = xVacations.get(position);
+                Intent intent = new Intent(context, VacationDetails.class);
+                intent.putExtra("vacationID", current.getVacationID());
+                intent.putExtra("vacationTitle", current.getVacationTitle());
+                intent.putExtra("vacationHotel", current.getVacationHotel());
+                intent.putExtra("startDate", current.getStartDate());
+                intent.putExtra("endDate", current.getEndDate());
+                context.startActivity(intent);
             });
         }
-
     }
+
+
     @NonNull
     @Override
-    public VacationAdapter.VacationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView=xInflater.inflate(R.layout.vacation_list_item,parent,false);
+    public VacationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View itemView = xInflater.inflate(R.layout.vacation_list_item, parent, false);
         return new VacationViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull VacationAdapter.VacationViewHolder holder, int position) {
-        if(xVacations!=null){
+    public void onBindViewHolder(@NonNull VacationViewHolder holder, int position) {
+        if (xVacations != null) {
             Vacation current = xVacations.get(position);
-            String title = current.getVacationTitle();
-            holder.vacationItemView.setText(title);
+            String combined = current.getVacationTitle() + "\n"
+                    + "Dates: " + current.getStartDate() + " - " + current.getEndDate() + "\n"
+                    + "Hotel: " + current.getVacationHotel();
+            holder.vacationCombinedView.setText(combined);
+        } else {
+            holder.vacationCombinedView.setText("No vacation data");
         }
-        else{
-            holder.vacationItemView.setText("No vacation title");
-        }
-
     }
 
+
+    @Override
     public int getItemCount() {
-        if(xVacations!=null){
-            return xVacations.size();
-
-        }
-        else return 0;
+        return (xVacations != null) ? xVacations.size() : 0;
     }
 
-    public void setVacations(List<Vacation> vacations){
-        xVacations=vacations;
+    public void setVacations(List<Vacation> vacations) {
+        xVacations = vacations;
         notifyDataSetChanged();
     }
-
-
 }
-

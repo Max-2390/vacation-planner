@@ -16,20 +16,55 @@ import com.example.myapplication.entities.Excursion;
 import java.util.List;
 
 public class ExcursionAdapter extends RecyclerView.Adapter<ExcursionAdapter.ExcursionViewHolder> {
+
     private List<Excursion> xExcursions;
     private final Context context;
     private final LayoutInflater xInflater;
-    class ExcursionViewHolder extends RecyclerView.ViewHolder {
 
-        private final TextView excursionItemView;
+    public ExcursionAdapter(Context context) {
+        this.context = context;
+        this.xInflater = LayoutInflater.from(context);
+    }
+
+    @NonNull
+    @Override
+    public ExcursionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View itemView = xInflater.inflate(R.layout.excursion_list_item, parent, false);
+        return new ExcursionViewHolder(itemView);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ExcursionViewHolder holder, int position) {
+        if (xExcursions != null && position < xExcursions.size()) {
+            Excursion current = xExcursions.get(position);
+            // Combine title and date into one string:
+            String combined = current.getTitle() + " (" + current.getDate() + ")";
+            holder.excursionInfoTextView.setText(combined);
+        } else {
+            holder.excursionInfoTextView.setText("No excursion info");
+        }
+    }
+
+    @Override
+    public int getItemCount() {
+        return (xExcursions != null) ? xExcursions.size() : 0;
+    }
+
+    public void setmExcursions(List<Excursion> excursions) {
+        this.xExcursions = excursions;
+        notifyDataSetChanged();
+    }
+
+    class ExcursionViewHolder extends RecyclerView.ViewHolder {
+        private final TextView excursionInfoTextView;
 
         private ExcursionViewHolder(View itemView) {
             super(itemView);
-            excursionItemView = itemView.findViewById(R.id.textView3);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int position = getAdapterPosition();
+            excursionInfoTextView = itemView.findViewById(R.id.excursionInfoTextView);
+
+            itemView.setOnClickListener(view -> {
+                int position = getAdapterPosition();
+                if (position != RecyclerView.NO_POSITION && xExcursions != null && position < xExcursions.size()) {
                     final Excursion current = xExcursions.get(position);
                     Intent intent = new Intent(context, ExcursionDetails.class);
                     intent.putExtra("excursionID", current.getId());
@@ -41,38 +76,4 @@ public class ExcursionAdapter extends RecyclerView.Adapter<ExcursionAdapter.Excu
             });
         }
     }
-
-    public ExcursionAdapter(Context context) {
-        xInflater = LayoutInflater.from(context);
-        this.context = context;
-    }
-
-    @Override
-    public ExcursionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = xInflater.inflate(R.layout.excursion_list_item, parent, false);
-        return new ExcursionViewHolder(itemView);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull ExcursionViewHolder holder, int position) {
-        if (xExcursions != null) {
-            Excursion current = xExcursions.get(position);
-            String title = current.getTitle();
-            int vacationID = current.getVacationID();
-            holder.excursionItemView.setText(title);
-        } else {
-            holder.excursionItemView.setText("No excursion title");
-        }
-    }
-
-    public void setmExcursions(List<Excursion> excursions) {
-        xExcursions = excursions;
-        notifyDataSetChanged();
-    }
-
-    public int getItemCount() {
-        if (xExcursions != null) return xExcursions.size();
-        else return 0;
-    }
-
 }
