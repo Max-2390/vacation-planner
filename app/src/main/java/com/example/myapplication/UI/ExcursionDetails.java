@@ -138,12 +138,14 @@ public class ExcursionDetails extends AppCompatActivity {
                 } else {
                     Excursion excursion;
                     if (id == -1) {
-                        excursion = new Excursion(id, editTitle.getText().toString(), vacationID, excursionDateString);
+                        excursion = new Excursion(0, editTitle.getText().toString(), vacationID, excursionDateString);
                         repository.insert(excursion);
+                        Toast.makeText(this, "Excursion saved successfully!", Toast.LENGTH_SHORT).show();
                         this.finish();
                     } else {
                         excursion = new Excursion(id, editTitle.getText().toString(), vacationID, excursionDateString);
                         repository.update(excursion);
+                        Toast.makeText(this, "Excursion updated successfully!", Toast.LENGTH_SHORT).show();
                         this.finish();
                     }
                 }
@@ -198,4 +200,5 @@ public class ExcursionDetails extends AppCompatActivity {
         editExcursionDate.setText(sdf.format(myCalendarDate.getTime()));
     }
 }
+
 

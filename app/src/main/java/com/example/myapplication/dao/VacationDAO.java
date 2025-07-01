@@ -27,4 +27,5 @@ public interface VacationDAO {
 
     @Query("SELECT * FROM vacations WHERE startDate >= :startDate AND endDate <= :endDate")
     List<Vacation> searchVacationsByDateRange(String startDate, String endDate);
+
 }

@@ -1,10 +1,13 @@
 package com.example.myapplication.entities;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "vacations")
-public class Vacation {
+public class Vacation implements Parcelable {
 
     @PrimaryKey(autoGenerate = true)
     public int vacationID;
@@ -15,7 +18,6 @@ public class Vacation {
 
     public Vacation() {}
 
-
     public Vacation(int vacationId, String vacationTitle, String vacationHotel, String startDate, String endDate) {
         this.vacationID = vacationId;
         this.vacationTitle = vacationTitle;
@@ -23,6 +25,41 @@ public class Vacation {
         this.startDate = startDate;
         this.endDate = endDate;
     }
+
+    protected Vacation(Parcel in) {
+        vacationID = in.readInt();
+        vacationTitle = in.readString();
+        vacationHotel = in.readString();
+        startDate = in.readString();
+        endDate = in.readString();
+    }
+
+    public static final Creator<Vacation> CREATOR = new Creator<Vacation>() {
+        @Override
+        public Vacation createFromParcel(Parcel in) {
+            return new Vacation(in);
+        }
+
+        @Override
+        public Vacation[] newArray(int size) {
+            return new Vacation[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int flags) {
+        parcel.writeInt(vacationID);
+        parcel.writeString(vacationTitle);
+        parcel.writeString(vacationHotel);
+        parcel.writeString(startDate);
+        parcel.writeString(endDate);
+    }
+
 
     public void setVacationTitle(String vacationTitle) {
         this.vacationTitle = vacationTitle;
@@ -39,7 +76,6 @@ public class Vacation {
     public void setVacationId(int vacationId) {
         this.vacationID = vacationId;
     }
-
 
     public String getVacationHotel() {
         return vacationHotel;
