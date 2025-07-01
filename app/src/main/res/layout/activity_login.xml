@@ -6,13 +6,16 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+
     tools:context=".UI.LoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:padding="50dp"
+        android:layout_marginTop="200dp">
 
         <EditText
             android:id="@+id/emailEditText"
@@ -20,9 +23,10 @@
             android:inputType="textEmailAddress"
             android:autofillHints="emailAddress"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="60dp"
             android:minHeight="48dp"
-            android:padding="12dp"/>
+            android:padding="12dp"
+            />
 
 
         <EditText
@@ -32,7 +36,7 @@
             android:autofillHints="password"
             android:imeOptions="actionDone"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="60dp"
             android:minHeight="48dp"
             android:padding="12dp"
             android:layout_marginTop="12dp"/>
