@@ -98,4 +98,5 @@ public class ReportActivity extends AppCompatActivity {
             reportContainer.addView(vacationCard);
         }
     }
+    // Force apk build
 }

@@ -272,6 +272,7 @@ public class VacationDetails extends AppCompatActivity {
             String dateFromScreen = editStartDate.getText().toString();
             String alert = "Vacation " + vacationTitle + " is starting";
             alertPicker(dateFromScreen, alert);
+            Toast.makeText(this, "Start date alert set for " + dateFromScreen, Toast.LENGTH_SHORT).show();
             return true;
         }
 
@@ -279,6 +280,7 @@ public class VacationDetails extends AppCompatActivity {
             String dateFromScreen = editEndDate.getText().toString();
             String alert = "Vacation " + vacationTitle + " is ending";
             alertPicker(dateFromScreen, alert);
+            Toast.makeText(this, "End date alert set for " + dateFromScreen, Toast.LENGTH_SHORT).show();
             return true;
         }
 
@@ -289,6 +291,7 @@ public class VacationDetails extends AppCompatActivity {
             dateFromScreen = editEndDate.getText().toString();
             alert = "Vacation " + vacationTitle + " is ending";
             alertPicker(dateFromScreen, alert);
+            Toast.makeText(this, "Alerts set for start and end dates.", Toast.LENGTH_SHORT).show();
             return true;
         }
 
